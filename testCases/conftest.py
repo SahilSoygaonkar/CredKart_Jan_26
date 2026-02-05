@@ -44,12 +44,13 @@ def browser_setup(request): # function
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--headless")
         driver = webdriver.Chrome(options = chrome_options)
+
     else:
-        chrome_options = webdriver.ChromeOptions()
+        firefox_options = webdriver.ChromeOptions()
         # Create an "options" object for Chrome.
         # We use it to control Chrome settings before the browser launches.
 
-        chrome_options.add_experimental_option("prefs", {
+        firefox_options.add_experimental_option("prefs", {
             "credentials_enable_service": False,
             # This turns OFF Chrome's "credentials service"
             # Chrome will not offer to save usernames/passwords.
@@ -60,7 +61,7 @@ def browser_setup(request): # function
             "profile.password_manager_leak_detection": False
         }
                                                )
-        driver = webdriver.Chrome(options=chrome_options)
+        driver = webdriver.Chrome(options=firefox_options)
         # Launch Chrome using the above options.
         # So Chrome starts with password manager disabled and those popups are avoided.
     driver.maximize_window()
